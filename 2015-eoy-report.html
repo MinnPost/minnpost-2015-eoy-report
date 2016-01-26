@@ -54,12 +54,15 @@ ul.supporters li:nth-child(2n) {
   padding: 0 10px;
 }
 
-
 .mp #donors h5 {
   clear: both;
   border-top: 1px solid #ccc;
   padding-top: 20px;
   margin-top: 25px;
+}
+
+.mp #donors {
+  font-size: .9em;
 }
 
 sup.loyal, sup.sustainer, sup.anniversary, sup.minnroast {
@@ -88,8 +91,12 @@ sup.anniversary {
   clear: both;
 }
 
-.mp #donors {
-  font-size: .9em;
+@media (max-width: 650px) {  
+  li.donor { width: 40%; }
+}
+
+@media (max-width: 400px) {  
+  li.donor { width: 80%; }
 }
 
 </style>
