@@ -266,6 +266,9 @@
       
       <p>MinnPost recorded revenues of $1.87 million in 2015, down 5% from 2014. This total includes $742,000 in membership donations and events, $442,000 in sponsorship and advertising, $602,000 in foundation grants, $83,000 in growth-capital campaign donations, and $5,000 in other revenue.</p>
       
+      <div class="component-label">MinnPost revenue composition by year</div>
+      <div class="chart chart-revenue-comp" style="height:500px;"></div>
+      
       <p>The slight decline in total revenue stems primarily from significant but anticipated decreases in foundation and capital campaign revenue. Foundation grants were down 17% from an abnormally high 2014 amount, while capital campaign revenue fell 51% as we entered the final stage of that multi-year fundraising effort.</p>
       
     </div>
@@ -3456,6 +3459,10 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script> 
 <script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/projects/minnpost-styles/0.0.4/minnpost-styles.nav.min.js"></script> 
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/projects/minnpost-styles/0.0.4/minnpost-styles.highcharts.js"></script>
+<script type="text/javascript" src="https://s3.amazonaws.com/data.minnpost/projects/minnpost-styles/0.0.4/minnpost-styles.formatters.js"></script>
 
 <script>
   // Scroll spy will look for elements that have matching attibutes
@@ -3463,4 +3470,38 @@
   
   // mpStick will use sensible defaults
   $('.eoy-report-stick-top').mpStick();
+  
+  MP.highcharts.makeChart('.chart-revenue-comp', $.extend(true, {}, MP.highcharts.barOptions,{
+    xAxis: {
+      categories: ["Membership & Events", " Foundation Grants", " Advertising", " Equity Campaign", " Other Revenues"]
+    },
+    yAxis: {
+      title: {
+        text: 'Total revenue ($)'
+      }
+    },
+    tooltip: {
+      formatter: function() {
+        return '' +
+        '<b>' + this.x + ',' + this.series.name + ':</b> $' + MP.formatters.integer(this.y)
+      }
+    },
+    series: [
+      {
+        name: '2013',
+        data: [678242, 253000, 428754, 226627, 30481]
+      },
+      {
+        name: '2014',
+        data: [651394, 712000, 427310, 169166, 7956]
+      },
+      {
+        name: '2015',
+        data: [741570, 594500, 441929, 83181, 4945]
+      }
+    ]
+
+  }));
+  
+  
 </script>
